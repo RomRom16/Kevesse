@@ -3,6 +3,7 @@
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import TrendingComponent from "@/components/ui/herocampaign";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -23,26 +24,30 @@ export default function Home() {
                 as="button"
                 className="bg-white/[0.07] hover:bg-white/[0.1] text-white flex items-center border-0 space-x-2 "
               >
-                <span>Discover what's new !</span>
+                <span className="flex items-center gap-1">
+                  Discover what's new 
+                  <svg width="17px" height="17px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#FFFFFF" stroke-width="1.5">
+                    <path d="M8 15C12.8747 15 15 12.949 15 8C15 12.949 17.1104 15 22 15C17.1104 15 15 17.1104 15 22C15 17.1104 12.8747 15 8 15Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round"></path>
+                    <path d="M2 6.5C5.13376 6.5 6.5 5.18153 6.5 2C6.5 5.18153 7.85669 6.5 11 6.5C7.85669 6.5 6.5 7.85669 6.5 11C6.5 7.85669 5.13376 6.5 2 6.5Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round"></path>
+                  </svg>                </span>
               </HoverBorderGradient>
             </div>
-            <h1 className="text-3xl text-white font-medium leading-tight mt-8 pb-[10px] text-center xs:text-4xl s:text-5xl sm:text-6xl md:text-7xl lg:text-[130px] tracking-[-0.05em]">
+            <h1 className="text-3xl text-white font-semibold leading-tight mt-8 pb-[10px] text-center  md:text-7xl lg:text-[110px] tracking-[-0.05em]">
               Unleash the Future :<br />
               Web3 Crowdfunding
             </h1>
-            <h4 className="mt-[15px] text-white max-w-[400px] sm:max-w-[630px] text-sm px-[20px] text-center text-base sm:text-base sm:text-xl lg:text-[22px]">
+            <h4 className="mt-[15px] text-white/[0.7] max-w-[400px] sm:max-w-[630px] text-sm px-[20px] text-center text-base sm:text-base sm:text-xl lg:text-[22px]">
               Revolutionize how ideas get funded. Streamline backing, monitor
               developments, and foster innovation with ease.
             </h4>
-            <div>
-            <button className="my-[50px] bg-gradient-to-r from-[#B2EBF2] to-white p-3 text-white text-[24px] rounded-lg hover:bg-gradient-to-br 
-focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#B2EBF2] dark:focus:ring-gray-800 transition duration-150 ease-in-out 
+            <div className="bg-[white]/[0.3] border-[1px] border-white/[0.2] p-1 my-[50px] rounded-[19px]">
+              <button
+                className=" bg-gradient-to-t from-[#9386b5] to-white text-[14px] px-5 py-3 text-[#080219]/[0.90] font-semibold md:px-6 md:py-4 md:text-[18px] lg:text-[22px] rounded-2xl transition duration-150 ease-in-out 
 btn-primary btn-lg"
-        >
-  Participate in a project
-  <div className="ml-[3px] pt-[0px]"></div>
-</button>
-
+              >
+                Participate in a project
+                <div className="ml-[3px] pt-[0px]"></div>
+              </button>
             </div>
           </div>
           <div className="w-full box-border px-[20px]">

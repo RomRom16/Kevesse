@@ -1,22 +1,23 @@
 "use client";
-
+import { useState } from "react";
+import * as React from "react";
 import initializeFirebaseClient from "@/lib/initFirebase";
-import {
-  getFirestore,
-  doc,
-  setDoc,
-  collection,
-  addDoc,
-  Firestore,
-} from "firebase/firestore";
-import { Auth, getAuth } from "firebase/auth";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
 import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
+import { cn } from "@/lib/utils";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
 import {
   Form,
   FormControl,
@@ -33,18 +34,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { InputFile } from "@/components/ui/input-file";
-import { Calendar } from "@/components/ui/calendar";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { cn } from "@/lib/utils";
+import {
+  UploadTaskSnapshot,
+  getStorage,
+  ref,
+  uploadBytes,
+  uploadBytesResumable,
+} from "firebase/storage";
+import { getDownloadURL } from "firebase/storage";
+
+const { auth, db, storage } = initializeFirebaseClient();
 
 const formSchema = z.object({
   title: z.string().min(2).max(50),
@@ -62,10 +64,59 @@ const formSchema = z.object({
   category: z.string({
     required_error: "Please select an email to display.",
   }),
+  deadline: z.date({
+    required_error: "A deadline is required.",
+  }),
 });
 
 export default function campaigncreate() {
   const { auth, db } = initializeFirebaseClient();
+  const campaignRef = collection(db, "campaigns");
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+  const uploadImage = async (
+    file: File | null
+  ): Promise<string | undefined> => {
+    if (!file) {
+      console.error("No file selected");
+      return undefined;
+    }
+    const storageRef = ref(
+      storage,
+      `campaign_images/${file.name}_${Date.now()}`
+    );
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    return new Promise((resolve, reject) => {
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+          }
+        },
+        (error) => {
+          console.error("Upload failed:", error);
+          reject(error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log("File available at", downloadURL);
+            resolve(downloadURL);
+          });
+        }
+      );
+    });
+  };
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -73,20 +124,27 @@ export default function campaigncreate() {
     },
   });
 
-  const campaignRef = collection(db, "campaigns");
-
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     if (!auth.currentUser) {
       console.error("User not authenticated");
       return;
     }
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log("Submitting values:", values);
-    // This will automatically create a new document with a unique ID in the "campaigns" collection.
-    addDoc(campaignRef, values)
+    const imageUrl = await uploadImage(selectedFile).catch(console.error);
+
+    const docToSave = {
+      ...values,
+      imageUrl,
+      owner: auth.currentUser.uid,
+      payedOut: false,
+      amountCollected: 0,
+      dateCreated: Timestamp.fromDate(new Date()),
+      campaignStatus: 1,
+    };
+
+    addDoc(campaignRef, docToSave)
       .then((docRef) => {
         console.log("Document written with ID: ", docRef.id);
+        // Reset the form or redirect the user after successful submission
       })
       .catch((error) => {
         console.error("Error adding document:", error.message);
@@ -94,7 +152,7 @@ export default function campaigncreate() {
   }
 
   return (
-    <main className="mt-[55px] p-10 grid grid-cols-2 gap-4">
+    <main className="mt-[55px] p-10 grid grid-cols-1 lg:grid-cols-2 gap-4">
       <div className="min-h-[600px] p-5 bg-white rounded-lg">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -198,7 +256,65 @@ export default function campaigncreate() {
                 </FormItem>
               )}
             />
-            <InputFile />
+            <FormField
+              control={form.control}
+              name="deadline"
+              render={({ field }) => (
+                <FormItem className="flex flex-col">
+                  <FormLabel>Deadline</FormLabel>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <FormControl>
+                        <Button
+                          variant={"outline"}
+                          className={cn(
+                            "w-[240px] pl-3 text-left font-normal",
+                            !field.value && "text-muted-foreground"
+                          )}
+                        >
+                          {field.value ? (
+                            format(field.value, "PPP")
+                          ) : (
+                            <span>Pick a date</span>
+                          )}
+                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                        </Button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={field.value}
+                        onSelect={field.onChange}
+                        disabled={(date) =>
+                          date > new Date() || date < new Date("1900-01-01")
+                        }
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
+                  <FormDescription>
+                    Your date of birth is used to calculate your age.
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <div className="grid w-full max-w-sm items-center gap-1.5">
+              <Label htmlFor="picture">Picture</Label>
+              <Input
+                id="picture"
+                type="file"
+                onChange={(e) => {
+                  if (e.target.files && e.target.files[0]) {
+                    setSelectedFile(e.target.files[0]);
+                  } else {
+                    console.error("No file selected");
+                    setSelectedFile(null);
+                  }
+                }}
+              />
+            </div>
             <Button type="submit">Submit</Button>
           </form>
         </Form>
