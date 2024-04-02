@@ -27,8 +27,7 @@ export default function RootLayout({
         domain: process.env.NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN as string,
         authUrl: "/api/auth/",
       }}
-      activeChain="sepolia"
-      clientId="bb9fc43fb2b21550bfd43473103bd48a"
+      
     >
       <html lang="en">
         <body
