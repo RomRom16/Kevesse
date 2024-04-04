@@ -23,7 +23,7 @@ export default function Home() {
                 as="button"
                 className="bg-white/[0.07] hover:bg-white/[0.1] text-white flex items-center border-0 space-x-2 "
               >
-                <span>Discover what's new !</span>
+                <span>Discover what's new test!</span>
               </HoverBorderGradient>
             </div>
             <h1 className="text-3xl text-white font-medium leading-tight mt-8 pb-[10px] text-center xs:text-4xl s:text-5xl sm:text-6xl md:text-7xl lg:text-[130px] tracking-[-0.05em]">
