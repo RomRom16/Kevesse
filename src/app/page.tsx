@@ -23,7 +23,7 @@ export default function Home() {
                 as="button"
                 className="bg-white/[0.07] hover:bg-white/[0.1] text-white flex items-center border-0 space-x-2 "
               >
-                <span>Discover what's new test!</span>
+                <span>Discover what's new !</span>
               </HoverBorderGradient>
             </div>
             <h1 className="text-3xl text-white font-medium leading-tight mt-8 pb-[10px] text-center xs:text-4xl s:text-5xl sm:text-6xl md:text-7xl lg:text-[130px] tracking-[-0.05em]">
@@ -34,15 +34,15 @@ export default function Home() {
               Revolutionize how ideas get funded. Streamline backing, monitor
               developments, and foster innovation with ease.
             </h4>
-            <div>
-            <button className="my-[50px] bg-gradient-to-r from-[#B2EBF2] to-white p-3 text-white text-[24px] rounded-lg hover:bg-gradient-to-br 
+            <div className="bg-[white]/[0.3] border-[1px] border-white/[0.2] p-1 my-[50px] rounded-[19px]">
+              <button
+                className=" bg-gradient-to-r from-[#B2EBF2] to-white px-8 py-5 text-black font-bold text-[20px] rounded-2xl hover:bg-gradient-to-br 
 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#B2EBF2] dark:focus:ring-gray-800 transition duration-150 ease-in-out 
 btn-primary btn-lg"
-        >
-  Participate in a project
-  <div className="ml-[3px] pt-[0px]"></div>
-</button>
-
+              >
+                Participate in a project
+                <div className="ml-[3px] pt-[0px]"></div>
+              </button>
             </div>
           </div>
           <div className="w-full box-border px-[20px]">
