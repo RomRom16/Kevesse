@@ -26,18 +26,17 @@ export default function Home() {
                 <span>Discover what's new !</span>
               </HoverBorderGradient>
             </div>
-            <h1 className="text-3xl text-white font-medium leading-tight mt-8 pb-[10px] text-center xs:text-4xl s:text-5xl sm:text-6xl md:text-7xl lg:text-[130px] tracking-[-0.05em]">
+            <h1 className="text-3xl text-white font-bold leading-tight mt-8 pb-[10px] text-center  md:text-7xl lg:text-[110px] tracking-[-0.05em]">
               Unleash the Future :<br />
               Web3 Crowdfunding
             </h1>
-            <h4 className="mt-[15px] text-white max-w-[400px] sm:max-w-[630px] text-sm px-[20px] text-center text-base sm:text-base sm:text-xl lg:text-[22px]">
+            <h4 className="mt-[15px] text-white/[0.7] max-w-[400px] sm:max-w-[630px] text-sm px-[20px] text-center text-base sm:text-base sm:text-xl lg:text-[22px]">
               Revolutionize how ideas get funded. Streamline backing, monitor
               developments, and foster innovation with ease.
             </h4>
             <div className="bg-[white]/[0.3] border-[1px] border-white/[0.2] p-1 my-[50px] rounded-[19px]">
               <button
-                className=" bg-gradient-to-r from-[#B2EBF2] to-white px-8 py-5 text-black font-bold text-[20px] rounded-2xl hover:bg-gradient-to-br 
-focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#B2EBF2] dark:focus:ring-gray-800 transition duration-150 ease-in-out 
+                className=" bg-gradient-to-t from-[#9386b5] to-white text-[14px] px-5 py-3 text-[#080219]/[0.90] font-semibold md:px-6 md:py-4 md:text-[18px] lg:text-[22px] rounded-2xl transition duration-150 ease-in-out 
 btn-primary btn-lg"
               >
                 Participate in a project
