@@ -1,11 +1,6 @@
 "use client";
-import { useState } from "react";
 import * as React from "react";
-import initializeFirebaseClient from "@/lib/initFirebase";
-import { collection, addDoc, Timestamp } from "firebase/firestore";
 import Link from "next/link";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
@@ -15,7 +10,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import {
@@ -37,119 +31,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import {
-  UploadTaskSnapshot,
-  getStorage,
-  ref,
-  uploadBytes,
-  uploadBytesResumable,
-} from "firebase/storage";
-import { getDownloadURL } from "firebase/storage";
+import { useCampaignForm } from './form'; // Adjust the import path as necessary
 
-const { auth, db, storage } = initializeFirebaseClient();
-
-const formSchema = z.object({
-  title: z.string().min(2).max(50),
-  bio: z
-    .string()
-    .min(10, {
-      message: "Bio must be at least 10 characters.",
-    })
-    .max(160, {
-      message: "Bio must not be longer than 30 characters.",
-    }),
-  type: z.enum(["Classic", "BWU", "none"], {
-    required_error: "You need to select a notification type.",
-  }),
-  category: z.string({
-    required_error: "Please select an email to display.",
-  }),
-  deadline: z.date({
-    required_error: "A deadline is required.",
-  }),
-});
-
-export default function campaigncreate() {
-  const { auth, db } = initializeFirebaseClient();
-  const campaignRef = collection(db, "campaigns");
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-
-  const uploadImage = async (
-    file: File | null
-  ): Promise<string | undefined> => {
-    if (!file) {
-      console.error("No file selected");
-      return undefined;
-    }
-    const storageRef = ref(
-      storage,
-      `campaign_images/${file.name}_${Date.now()}`
-    );
-    const uploadTask = uploadBytesResumable(storageRef, file);
-
-    return new Promise((resolve, reject) => {
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload is " + progress + "% done");
-          switch (snapshot.state) {
-            case "paused":
-              console.log("Upload is paused");
-              break;
-            case "running":
-              console.log("Upload is running");
-              break;
-          }
-        },
-        (error) => {
-          console.error("Upload failed:", error);
-          reject(error);
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            console.log("File available at", downloadURL);
-            resolve(downloadURL);
-          });
-        }
-      );
-    });
-  };
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      title: "",
-    },
-  });
-
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    if (!auth.currentUser) {
-      console.error("User not authenticated");
-      return;
-    }
-    const imageUrl = await uploadImage(selectedFile).catch(console.error);
-
-    const docToSave = {
-      ...values,
-      imageUrl,
-      owner: auth.currentUser.uid,
-      payedOut: false,
-      amountCollected: 0,
-      dateCreated: Timestamp.fromDate(new Date()),
-      campaignStatus: 1,
-    };
-
-    addDoc(campaignRef, docToSave)
-      .then((docRef) => {
-        console.log("Document written with ID: ", docRef.id);
-        // Reset the form or redirect the user after successful submission
-      })
-      .catch((error) => {
-        console.error("Error adding document:", error.message);
-      });
-  }
+export default function CampaignCreate() {
+  const { form, onSubmit, setSelectedFile } = useCampaignForm();
 
   return (
     <main className="mt-[55px] p-10 grid grid-cols-1 lg:grid-cols-2 gap-4">
