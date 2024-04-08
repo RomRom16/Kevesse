@@ -37,7 +37,7 @@ export default function Login() {
     
     try {
       
-      const payload =  thirdwebAuth?.login();
+      const payload =  thirdwebAuth.login();
       console.log("Login payload:", payload);
     
       

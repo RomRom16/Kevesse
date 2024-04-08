@@ -3,7 +3,7 @@
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import TrendingComponent from "@/components/ui/herocampaign";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
+
 
 export default function Home() {
   return (

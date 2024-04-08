@@ -11,7 +11,7 @@ export default async function login(
 
   // Grab the login payload the user sent us with their request.
   const payload = req.body.payload;
-  console.log("Received payload:", payload);
+  console.log("Received payload:",  payload);
 
   let address, error;
   try {
