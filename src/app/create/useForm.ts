@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { collection, addDoc } from 'firebase/firestore';
-import initializeFirebaseClient  from '@/lib/initFirebase';
-import { formSchema, uploadImage, FormValues } from './functions';
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { collection, addDoc } from "firebase/firestore";
+import initializeFirebaseClient from "@/lib/initFirebase";
+import { formSchema, uploadImage, FormValues } from "./functions";
 
 export function useCampaignForm() {
   const { auth, db } = initializeFirebaseClient();
@@ -18,6 +18,7 @@ export function useCampaignForm() {
       type: "none",
       category: "",
       deadline: new Date(),
+      target: 0,
     },
   });
 
@@ -38,7 +39,13 @@ export function useCampaignForm() {
       campaignStatus: 1,
     };
 
-    return addDoc(campaignRef, docToSave);
+    // Save the document and get a reference to the newly created document
+    const docRef = await addDoc(campaignRef, docToSave);
+
+    // Print the ID of the newly created document
+    console.log("Campaign created with ID:", docRef.id);
+
+    return docRef;
   };
 
   return { form, onSubmit, setSelectedFile };
