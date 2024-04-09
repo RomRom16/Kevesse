@@ -18,7 +18,12 @@ export const Step0: React.FC<Step0Props> = ({ control }) => (
   <div className="w-full">
     <p className="font-semibold text-[50px] mb-[30px] leading-tight tracking-[-0.03em]">
       Let's start by choosing the{" "}
-      <span className="bg-gradient-to-r from-blue-500 to-cyan-200 bg-clip-text inline-block text-transparent">
+      <span
+        className="bg-gradient-to-r from-blue-500 to-cyan-200 bg-clip-text inline-block text-transparent"
+        style={{
+          textShadow: "0px 0px 40px rgba(120,120,255,1)",
+        }}
+      >
         type of campaign
       </span>{" "}
       that fit your project.
@@ -36,7 +41,14 @@ export const Step0: React.FC<Step0Props> = ({ control }) => (
               className="grid grid-cols-1 lg:grid-cols-2 w-full"
             >
               <FormItem className="flex flex-col">
-                <FormLabel className="font-normal hover:cursor-pointer rounded-xl border-[1px] border-[white]/[0.1] hover:bg-[white]/[0.1] p-5 ">
+                <FormLabel
+                  className="font-normal hover:cursor-pointer rounded-xl border-[1px] border-[white]/[0.1] hover:bg-[white]/[0.2] h-full p-5 bg-[#1f1f1f]"
+                  style={{
+                    WebkitBoxShadow: "0px 0px 195px 1px rgba(120,120,120,0.52)",
+                    MozBoxShadow: "0px 0px 195px 1px rgba(120,120,120,0.52)",
+                    boxShadow: "0px 0px 195px 1px rgba(120,120,120,0.52)",
+                  }}
+                >
                   <div className="bg-gradient-to-r from-blue-500 to-cyan-200 h-[17px] w-[17px] rounded-[200px] ml-[-2px] mb-[10px]"></div>
 
                   <div className="flex items-center gap-3">
@@ -45,11 +57,22 @@ export const Step0: React.FC<Step0Props> = ({ control }) => (
                     </FormControl>
                     <p className="font-semibold">Classic campaign</p>
                   </div>
-                  <p className="mt-[10px]">Set a clear financial target, then exceed it to unlock extra rewards. This traditional model boosts ongoing support by offering additional value as you surpass goals.</p>
+                  <p className="mt-[10px]">
+                    Set a clear financial target, then exceed it to unlock extra
+                    rewards. This traditional model boosts ongoing support by
+                    offering additional value as you surpass goals.
+                  </p>
                 </FormLabel>
               </FormItem>
               <FormItem className="flex flex-col">
-                <FormLabel className="font-normal hover:cursor-pointer rounded-xl border-[1px] border-[white]/[0.1] hover:bg-[white]/[0.1] p-5 ">
+                <FormLabel
+                  className="font-normal hover:cursor-pointer rounded-xl border-[1px] border-[white]/[0.1] hover:bg-[white]/[0.2] h-full p-5 bg-[#1f1f1f]"
+                  style={{
+                    WebkitBoxShadow: "0px 0px 195px 1px rgba(120,120,120,0.52)",
+                    MozBoxShadow: "0px 0px 195px 1px rgba(120,120,120,0.52)",
+                    boxShadow: "0px 0px 195px 1px rgba(120,120,120,0.52)",
+                  }}
+                >
                   <div className="flex">
                     <div className="bg-gradient-to-r from-blue-500 to-cyan-200 h-[17px] w-[17px] rounded-[200px] ml-[-2px] mb-[10px]"></div>
                     <div className="bg-gradient-to-r from-blue-500 to-cyan-200 h-[17px] w-[17px] rounded-[200px] ml-[-4px] mb-[10px]"></div>
@@ -60,7 +83,11 @@ export const Step0: React.FC<Step0Props> = ({ control }) => (
                     </FormControl>
                     <p className="font-semibold">Built with us</p>
                   </div>
-                  <p className="mt-[10px]">Start funding your project with milestones before reaching the final goal. This innovative approach builds engagement, making every step towards the target a shared success.</p>
+                  <p className="mt-[10px]">
+                    Start funding your project with milestones before reaching
+                    the final goal. This innovative approach builds engagement,
+                    making every step towards the target a shared success.
+                  </p>
                 </FormLabel>
               </FormItem>
             </RadioGroup>

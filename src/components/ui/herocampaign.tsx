@@ -14,9 +14,9 @@ const TrendingComponent: React.FC = () => {
           </a>
         </div>
       </div>
-      <div className="bg-[blue] mt-[40px] p-5 rounded-xl min-h-[400px]">
+      <div className="bg-black mt-[40px] p-5 rounded-xl min-h-[400px]">
         <div className="flex">
-          <div className="bg-[red] w-[70px] h-[70px] rounded-xl"></div>
+          <div className="bg-[#111111] w-[70px] h-[70px] rounded-xl"></div>
           <div>
             <h1>Campaign's Title</h1>
             <p>Amount Collected</p>
