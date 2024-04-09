@@ -24,7 +24,7 @@ interface Step2Props {
 }
 
 export const Step2: React.FC<Step2Props> = ({ control }) => (
-  <>
+  <div>
     {/* Deadline Field */}
     <FormField
       control={control}
@@ -98,5 +98,5 @@ export const Step2: React.FC<Step2Props> = ({ control }) => (
         </FormItem>
       )}
     />
-  </>
+  </div>
 );

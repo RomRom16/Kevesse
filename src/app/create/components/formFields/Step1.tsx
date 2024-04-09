@@ -24,7 +24,7 @@ interface Step1Props {
 }
 
 export const Step1: React.FC<Step1Props> = ({ control, setCampaignTitle }) => (
-  <>
+  <div>
     {/* Title Field */}
     <FormField
       control={control}
@@ -96,5 +96,5 @@ export const Step1: React.FC<Step1Props> = ({ control, setCampaignTitle }) => (
         </FormItem>
       )}
     />
-  </>
+  </div>
 );
