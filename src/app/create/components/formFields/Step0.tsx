@@ -33,7 +33,7 @@ export const Step0: React.FC<Step0Props> = ({ control }) => (
             <RadioGroup
               onValueChange={field.onChange}
               defaultValue={field.value}
-              className="grid grid-cols-2 w-full"
+              className="grid grid-cols-1 lg:grid-cols-2 w-full"
             >
               <FormItem className="flex flex-col">
                 <FormLabel className="font-normal hover:cursor-pointer rounded-xl border-[1px] border-[white]/[0.1] hover:bg-[white]/[0.1] p-5 ">

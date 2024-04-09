@@ -34,8 +34,14 @@ export default function CampaignCreate() {
   };
 
   return (
-    <main className="mt-[55px] p-10 grid grid-cols-1 lg:grid-cols-2 gap-4">
-      <div className="flex min-h-[600px] p-5 bg-[#1f1f1f] rounded-lg border-[1px] z-[1]">
+    <main className="mt-[55px] p-10 grid grid-cols-1 lg:grid-cols-2 gap-4 max-w-[1900px] mx-auto">
+      
+      <div className="flex min-h-[800px] p-5 bg-[#1f1f1f] rounded-lg border-[1px] border-[white]/[0.1] z-[1]" style={{
+        WebkitBoxShadow: "0px 0px 195px 1px rgba(120,120,120,0.52)",
+        MozBoxShadow: "0px 0px 195px 1px rgba(120,120,120,0.52)",
+        boxShadow: "0px 0px 195px 1px rgba(120,120,120,0.52)",
+      }}>
+       
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}

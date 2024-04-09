@@ -19,7 +19,7 @@ export default function Menu() {
   return (
     <main>
       <div className="fixed top-0 left-0 w-full backdrop-blur-2xl bg-[#000000]/[0.5] h-[55px] z-[9998]"></div>
-      <div className="fixed px-[20px] top-0 left-0 w-full border-b-[1px] border-opacity-10 border-white z-[9999]">
+      <div className="fixed px-[20px] top-0 left-0 w-full border-b-[1px] border-white/[0.1] z-[9999]">
         <div className="flex justify-between items-center flex-row sticky max-w-[1200px] mx-auto h-[55px]">
           <div className="flex items-center flex-row">
             <Link href="/" className="mr-[20px]">

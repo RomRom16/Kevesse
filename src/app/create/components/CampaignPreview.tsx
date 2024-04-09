@@ -22,7 +22,11 @@ const CampaignPreview: React.FC<CampaignPreviewProps> = ({ campaignTitle }) => {
         list
       </p>
       <div className="h-full w-full flex justify-center items-center">
-        <div className=" h-[350px] text-white rounded-2xl  bg-[black]/[0.6] p-4 w-[250px]">
+        <div className=" h-[350px] text-white rounded-2xl  bg-[black]/[0.6] p-4 w-[250px]" style={{
+        WebkitBoxShadow: "0px 0px 195px 1px rgba(0,0,0,0.52)",
+        MozBoxShadow: "0px 0px 195px 1px rgba(0,0,0,0.52)",
+        boxShadow: "0px 0px 195px 1px rgba(0,0,0,0.52)",
+      }}>
           <div className="flex justify-center items-center w-full bg-gradient-to-b from-muted/50 to-muted h-[200px] rounded-2xl text-center">
             <p>Your campaign image (upload an img to visualize, step 4)</p>
           </div>
