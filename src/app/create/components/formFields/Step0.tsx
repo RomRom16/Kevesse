@@ -16,8 +16,8 @@ interface Step0Props {
 
 export const Step0: React.FC<Step0Props> = ({ control }) => (
   <div className="w-full">
-    <p className="font-semibold text-[50px] mb-[30px] leading-tight tracking-[-0.03em]">
-      Let's start by choosing the{" "}
+    <p className="font-semibold text-[50px] mb-[60px] max-w-[70%] leading-tight text-white/[0.6] tracking-[-0.03em]">
+      <span className="text-white">Let's start</span> by selecting the{" "}
       <span
         className="bg-gradient-to-r from-blue-500 to-cyan-200 bg-clip-text inline-block text-transparent"
         style={{
@@ -41,14 +41,7 @@ export const Step0: React.FC<Step0Props> = ({ control }) => (
               className="grid grid-cols-1 lg:grid-cols-2 w-full"
             >
               <FormItem className="flex flex-col">
-                <FormLabel
-                  className="font-normal hover:cursor-pointer rounded-xl border-[1px] border-[white]/[0.1] hover:bg-[white]/[0.2] h-full p-5 bg-[#1f1f1f]"
-                  style={{
-                    WebkitBoxShadow: "0px 0px 195px 1px rgba(120,120,120,0.52)",
-                    MozBoxShadow: "0px 0px 195px 1px rgba(120,120,120,0.52)",
-                    boxShadow: "0px 0px 195px 1px rgba(120,120,120,0.52)",
-                  }}
-                >
+                <FormLabel className="font-normal hover:cursor-pointer rounded-xl border-[1px] border-[white]/[0.1] hover:bg-[white]/[0.2] h-full p-5 bg-[#1f1f1f]">
                   <div className="bg-gradient-to-r from-blue-500 to-cyan-200 h-[17px] w-[17px] rounded-[200px] ml-[-2px] mb-[10px]"></div>
 
                   <div className="flex items-center gap-3">
@@ -65,14 +58,7 @@ export const Step0: React.FC<Step0Props> = ({ control }) => (
                 </FormLabel>
               </FormItem>
               <FormItem className="flex flex-col">
-                <FormLabel
-                  className="font-normal hover:cursor-pointer rounded-xl border-[1px] border-[white]/[0.1] hover:bg-[white]/[0.2] h-full p-5 bg-[#1f1f1f]"
-                  style={{
-                    WebkitBoxShadow: "0px 0px 195px 1px rgba(120,120,120,0.52)",
-                    MozBoxShadow: "0px 0px 195px 1px rgba(120,120,120,0.52)",
-                    boxShadow: "0px 0px 195px 1px rgba(120,120,120,0.52)",
-                  }}
-                >
+                <FormLabel className="font-normal hover:cursor-pointer rounded-xl border-[1px] border-[white]/[0.1] hover:bg-[white]/[0.2] h-full p-5 bg-[#1f1f1f]">
                   <div className="flex">
                     <div className="bg-gradient-to-r from-blue-500 to-cyan-200 h-[17px] w-[17px] rounded-[200px] ml-[-2px] mb-[10px]"></div>
                     <div className="bg-gradient-to-r from-blue-500 to-cyan-200 h-[17px] w-[17px] rounded-[200px] ml-[-4px] mb-[10px]"></div>

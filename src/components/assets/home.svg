@@ -1,20 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1920" preserveAspectRatio="none">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: url(#radial-gradient);
-        stroke-width: 0px;
-      }
-    </style>
-    <radialGradient id="radial-gradient" cx="941.02" cy="1918.88" fx="941.02" fy="1918.88" r="1910.54" gradientTransform="translate(-1244.43 2859.91) rotate(-90) scale(1 1.14)" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#efd343"/>
-      <stop offset=".2" stop-color="#f97037"/>
-      <stop offset=".4" stop-color="#c3433e"/>
-      <stop offset=".66" stop-color="#474590"/>
-      <stop offset=".83" stop-color="#292e49"/>
-      <stop offset="1" stop-color="#000"/>
-    </radialGradient>
-  </defs>
-  <rect class="cls-1" width="1920" height="1920"/>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 28.3.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px "
+	 viewBox="0 0 1920 1920" preserveAspectRatio="none"  style="enable-background:new 0 0 1920 1920;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#SVGID_1_);}
+</style>
+<radialGradient id="SVGID_1_" cx="1454.351" cy="-29.8457" r="1380.1859" fx="663.6215" fy="-26.6797" gradientTransform="matrix(6.123234e-17 -1 -1.5387 -9.421858e-17 932.4703 2859.9099)" gradientUnits="userSpaceOnUse">
+	<stop  offset="8.099981e-02" style="stop-color:#EFD343"/>
+	<stop  offset="0.3563" style="stop-color:#F97037"/>
+	<stop  offset="0.5145" style="stop-color:#C3433E"/>
+	<stop  offset="0.7337" style="stop-color:#0027BF"/>
+	<stop  offset="0.9021" style="stop-color:#0D003F"/>
+	<stop  offset="1" style="stop-color:#000000"/>
+</radialGradient>
+<rect class="st0" width="1920" height="1920"/>
 </svg>
