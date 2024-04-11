@@ -37,8 +37,8 @@ export const Step1: React.FC<Step1Props> = ({ control, setCampaignTitle }) => (
               placeholder="Campaign Title"
               {...field}
               onChange={(e) => {
-                field.onChange(e); // Call the form's field onChange
-                setCampaignTitle(e.target.value); // Update state variable
+                field.onChange(e);
+                setCampaignTitle(e.target.value);
               }}
             />
           </FormControl>
