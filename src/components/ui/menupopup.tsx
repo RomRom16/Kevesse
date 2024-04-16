@@ -38,7 +38,7 @@ export default function Menupopup() {
                 <ListItem href="/docs" title="Campaigns you financed" className="h-[60px] flex flex-col justify-center">
                 </ListItem>
               </li>
-              <ListItem href="/docs" title="FinTech">
+              <ListItem href="/explore" title="FinTech">
                 Re-usable components built using Radix UI and Tailwind CSS.
               </ListItem>
               <ListItem href="/docs/installation" title="GameFi">
