@@ -2,7 +2,7 @@ import React from "react";
 
 const TrendingComponent: React.FC = () => {
   return (
-    <div className="p-5 w-full my-[90px] bg-white/[0.07] backdrop-blur-2xl border-[1px] border-[white]/[0.2] rounded-[20px]">
+    <div className="p-5 w-full bg-white/[0.07] backdrop-blur-2xl border-[1px] border-[white]/[0.2] rounded-[20px]">
       <div className=" w-[fit-content] mx-auto">
         <p className="text-white font-bold text-center">Trending</p>
         <div className="flex flex-row gap-4">
