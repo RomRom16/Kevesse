@@ -1,9 +1,11 @@
 import { authedOnly } from "../actions/auth";
 import { LogOutButton } from "../components/logout-button";
+import { cookies } from "next/headers";
 
 const AuthenticatedPage = async () => {
   const parsedJWT = await authedOnly();
-
+  
+  
   return (
     <div style={{marginTop:50}}>
       <h1>Authenticated Page</h1>
