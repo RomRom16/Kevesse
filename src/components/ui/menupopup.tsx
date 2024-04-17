@@ -20,7 +20,7 @@ export default function Menupopup() {
         <NavigationMenuList>
           <NavigationMenuItem>
             <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-              <li className="row-span-4 flex flex-col gap-3">
+              <div className="row-span-4 flex flex-col gap-3">
                 <NavigationMenuLink asChild className="flex grow">
                   <a
                     className="flex max-h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
@@ -37,7 +37,7 @@ export default function Menupopup() {
                 </NavigationMenuLink>
                 <ListItem href="/docs" title="Campaigns you financed" className="h-[60px] flex flex-col justify-center">
                 </ListItem>
-              </li>
+              </div>
               <ListItem href="/explore" title="FinTech">
                 Re-usable components built using Radix UI and Tailwind CSS.
               </ListItem>

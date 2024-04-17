@@ -1,11 +1,9 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import { collection, getDocs, DocumentData } from "firebase/firestore";
+import React from "react";
 import CampaignCard from "@/components/campaigncard";
 import initializeFirebaseClient from "@/lib/initFirebase";
+import { collection, getDocs, QueryDocumentSnapshot } from "firebase/firestore";
 
-// Define a type for your campaign data based on the structure of your Firebase documents
-type Campaign = {
+type CampaignData = {
   imageUrl: string;
   title: string;
   deadline: string;
@@ -13,42 +11,38 @@ type Campaign = {
   target: number;
 };
 
-export default function Explore() {
-  const [campaigns, setCampaigns] = useState<Campaign[]>([]);
-  const { db } = initializeFirebaseClient(); // Get the Firestore instance
 
-  useEffect(() => {
-    const fetchCampaigns = async () => {
-      const campaignsCol = collection(db, "campaigns");
-      const campaignSnapshot = await getDocs(campaignsCol);
-      const campaignsList = campaignSnapshot.docs.map(
-        (doc) => doc.data() as Campaign
-      );
-      setCampaigns(campaignsList);
+async function loader() {
+  const { db } = initializeFirebaseClient();
+  const querySnapshot = await getDocs(collection(db, "campaigns"));
+  const campaigns = querySnapshot.docs.map((doc) => {
+    const docData = doc.data() as CampaignData;
+    return {
+      id: doc.id,
+      ...docData,
     };
+  });
+  return { campaigns };
+}
 
-    fetchCampaigns();
-  }, [db]); // Include db in the dependency array to ensure it's initialized
-
-  // Function to calculate days left until the deadline
-
+export default async function Explore() {
+  const { campaigns } = await loader();
   return (
-    <main className="mt-[55px] grid grid-cols-5 gap-5 bg-white p-5">
-      {campaigns.map((campaign, index) => (
-        <div key={index} className="flex justify-center">
-          {" "}
-          {/* Centering horizontally */}
-          <CampaignCard
-            imageLink={
-              campaign.imageUrl || "https://example.com/default-image.jpg"
-            }
-            campaignTitle={campaign.title || "Title"}
-            daysLeft={3}
-            category={campaign.category || "Category"}
-            fundingTarget={campaign.target || 0}
-          />
-        </div>
-      ))}
+    <main className="mt-[55px] grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 bg-white p-5">
+      {campaigns &&
+        campaigns.map((campaign) => (
+          <div key={campaign.id} className="flex justify-center">
+            <CampaignCard
+              imageLink={
+                campaign.imageUrl || "https://example.com/default-image.jpg"
+              }
+              campaignTitle={campaign.title || "No title provided"}
+              daysLeft={3}
+              category={campaign.category || "No category"}
+              fundingTarget={campaign.target || 0}
+            />
+          </div>
+        ))}
     </main>
   );
 }
