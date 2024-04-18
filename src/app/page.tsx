@@ -49,9 +49,9 @@ export default async function Home() {
               Revolutionize how ideas get funded. Streamline backing, monitor
               developments, and foster innovation with ease.
             </h4>
-            <div className="bg-[white]/[0.3] border-[1px] border-white/[0.2] p-1 mt-[50px] rounded-[19px]">
+            <div className="bg-[white]/[0.3] border-[1px] border-white/[0.2] p-[3px] mt-[50px] rounded-[19px]">
               <button
-                className=" bg-gradient-to-t from-[#474590]/[0.1] to-white text-[14px] px-5 py-3 text-[#474590] font-semibold md:px-6 md:py-4 md:text-[18px] lg:text-[22px] rounded-2xl transition duration-150 ease-in-out 
+                className=" bg-gradient-to-t from-[rgb(169,177,244)]/[0.9] to-white text-[14px] px-5 py-3 text-[rgb(9,17,84)] font-semibold md:px-6 md:py-4 md:text-[18px] lg:text-[22px] rounded-2xl transition duration-150 ease-in-out 
 btn-primary btn-lg"
               >
                 Participate in a project

@@ -16,7 +16,7 @@ interface Step0Props {
 
 export const Step0: React.FC<Step0Props> = ({ control }) => (
   <div className="w-full">
-    <p className="font-semibold text-[50px] text-balance mb-[60px] leading-tight text-white/[0.6] tracking-[-0.03em]">
+    <p className="font-semibold text-[50px] text-balance mb-[60px] leading-tight text-white tracking-[-0.03em]">
       <span className="text-white">Let's start</span> by selecting the{" "}
       <span
         className="bg-gradient-to-r from-blue-500 to-cyan-200 bg-clip-text inline-block text-transparent"

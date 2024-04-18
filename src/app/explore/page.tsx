@@ -1,29 +1,6 @@
 import React from "react";
 import CampaignCard from "@/components/campaigncard";
-import initializeFirebaseClient from "@/lib/initFirebase";
-import { collection, getDocs, QueryDocumentSnapshot } from "firebase/firestore";
-
-type CampaignData = {
-  imageUrl: string;
-  title: string;
-  deadline: string;
-  category: string;
-  target: number;
-};
-
-
-async function loader() {
-  const { db } = initializeFirebaseClient();
-  const querySnapshot = await getDocs(collection(db, "campaigns"));
-  const campaigns = querySnapshot.docs.map((doc) => {
-    const docData = doc.data() as CampaignData;
-    return {
-      id: doc.id,
-      ...docData,
-    };
-  });
-  return { campaigns };
-}
+import { loader } from "./actions";
 
 export default async function Explore() {
   const { campaigns } = await loader();
