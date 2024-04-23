@@ -1,4 +1,10 @@
+"use client";
+
+import { useState } from "react";
 import React from "react";
+import ArrowRight from "@/components/assets/Arrow right icon.svg";
+import Image from "next/image";
+import ETHIcon from "@/components/assets/Ethereum icon.svg";
 
 interface CampaignCardProps {
   imageLink: string;
@@ -16,53 +22,55 @@ function CampaignCard({
   fundingTarget,
 }: CampaignCardProps) {
   return (
-    <article
-      className="text-white rounded-[20px] w-full max-w-[225px] cursor-pointer border-[1px] border-white/[0.15] p-1"
-      style={{
-        backgroundImage: "linear-gradient(#252525, rgba(37, 37, 37, 0.5))",
-        WebkitBoxShadow: "0px 0px 195px 1px rgba(17,17,17,0.52)",
-        MozBoxShadow: "0px 0px 195px 1px rgba(17,17,17,0.52)",
-        boxShadow: "0px 10px 40px 0px rgba(17,17,17,0.60)",
-      }}
-    >
-      {" "}
-      <div className="text-white rounded-2xl bg-[#111111]  text-[13px]">
-        <figure className="flex justify-center items-center w-full h-[130px] p-2 pb-0 rounded-lg text-center">
+    <article className="rounded-[19px] group cursor-pointer border-[1px] bg-[black]/[0] border-[black]/[0]  p-[8px] transition duration-300 ease-in-out hover:bg-[black]/[0.05] hover:border-[black]/[0.07]">
+      <div className="flex items-center justify-between text-[black] mb-[11px] mt-[2px]">
+        <p
+          className="font-bold ml-[3px] text-[20px] overflow-hidden truncate capitalize"
+          style={{
+            display: "-webkit-box",
+            WebkitBoxOrient: "vertical",
+            WebkitLineClamp: 1,
+          }}
+        >
+          {campaignTitle || "Title"}
+        </p>
+        <div className="flex gap-2">
+          <p className="flex items-center text-[16px] font-medium border-[1px] bg-[black]/[0.05] border-[black]/[0.07] rounded-[40px] pr-[4px] pl-[9px] h-[30px] translate-x-[35px]  w-[fit-content] transition-all duration-300 ease-in-out group-hover:-translate-x-[0px]">
+            0% of {fundingTarget || 0}
+            <Image src={ETHIcon} alt="ETH" className="" height={18} priority />
+          </p>
+
+          <div className="flex items-center justify-center text-[16px] font-medium border-[1px] h-[30px] bg-[black]/[0.05] border-[black]/[0.07] rounded-[40px] w-[30px] transition-opacity duration-300 opacity-0 group-hover:opacity-100">
+            <Image
+              src={ArrowRight}
+              alt="Arrow"
+              className=""
+              height={22}
+              priority
+            />
+          </div>
+        </div>
+      </div>
+      <div className="relative flex justify-center items-center max-w-[318px] w-full h-[185px]">
+        <figure className="flex justify-center items-center w-full h-full text-center relative">
           <img
             src={imageLink}
             alt="Campaign"
-            className="rounded-xl"
+            className="rounded-[16px]"
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           />
+          <div className="absolute bottom-0 left-0 w-full h-full bg-[black]/[0.07] rounded-[16px]"></div>
+          <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black/[0.6] to-transparent rounded-b-[16px]"></div>
         </figure>
 
-        <div className="p-4">
-          <div className="flex flex-col ">
-            <div>
-              <p className="border-[1px] px-2 h-[fit-content] w-[fit-content] rounded-2xl border-[white]/[0.4] bg-[white]/[0.07]">
-                {category || "Category"}
-              </p>
-            </div>
-            <p
-              className="font-semibold text-[15px] overflow-hidden truncate"
-              style={{
-                display: "-webkit-box",
-                WebkitBoxOrient: "vertical",
-                WebkitLineClamp: 1,
-              }}
-            >
-              {campaignTitle || "Title"}
+        <div className="absolute flex text-[16px] text-medium text-white text-[16px] bottom-[10px] left-[10px]">
+          <div className="flex gap-2">
+            <p className="border-[1px] border-white/[0.09] px-2 py-[2px] h-fit w-fit rounded-2xl backdrop-blur-[20px] bg-white/10">
+              {daysLeft || 365} days left
             </p>
-          </div>
-          <div className="flex flex-row justify-between">
-            <p>
-              0%
-              <span className="text-white/[0.6]">
-                {" "}
-                of {fundingTarget || 0}ETH
-              </span>
+            <p className="border-[1px] border-white/[0.09] px-2 py-[2px] h-fit w-fit rounded-2xl backdrop-blur-[20px] bg-white/10">
+              {category || "Category"}
             </p>
-            <p>{daysLeft || 365} days left</p>
           </div>
         </div>
       </div>
